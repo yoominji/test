@@ -1,6 +1,8 @@
+#map {width:48%; height:500px;}
+.directions {width:48%; height:500px; padding:30px; background-image:url('../../gallery_img/cat9.jpg'); text-align:right;}
+
 .personalinfo dt {font-weight:bold;}
 .personalinfo dd {text-indent:15px;}
-
 
 .calendar {width:100%;}
 .calendar th, td {width:14%;}
@@ -22,3 +24,8 @@
 .view tr:first-child {border-top:2px solid #557d9f;}
 .view th {height:40px; border-bottom:1px solid #ccc; background-color: #efefef; padding: 10px; text-align: center;}
 .view td {height:40px; border-bottom:1px solid #ccc; padding: 10px;}
+
+.commentWrite {width:100%; margin-top:10px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding:5px;}
+.commentWrite textarea {margin-bottom:5px;}
+
+.media-list li {border-bottom:1px solid #ccc; padding:5px;}
