@@ -1,0 +1,9 @@
+.view img{
+    width: 380px !important;
+    height: 570px;
+}
+
+.thumbnail {
+    width: 160px;
+    padding: 2px;
+}

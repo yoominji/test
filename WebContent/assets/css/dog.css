@@ -1,0 +1,12 @@
+#tab > .active{
+	list-style: none;
+}
+
+.page-num{
+	display: block;
+	text-align: center;
+}
+
+.page-num > li > a {
+	float: none;
+}

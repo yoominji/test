@@ -1,0 +1,41 @@
+@CHARSET "EUC-KR";
+.search {
+	height: 50px;
+	float: right;
+}
+
+.input-group {
+	width: 200px !important;
+	margin-left: 85px !important;
+	bottom:34px;
+}
+.btn-primary {
+	height: 34px;
+}
+
+.clearbox {
+	height :10px;
+}
+
+.shoot {
+	text-decoration: none !important;
+	color: #333 !important;
+}
+
+.welcom {
+	text-decoration: none !important;
+	color: #333 !important;
+}
+
+thead {
+	background-color: #f9f9f9 !important;
+}
+
+.page-num{
+	display: block;
+	text-align: center;
+}
+
+.page-num > li > a {
+	float: none;
+}

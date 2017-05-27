@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Pet Studio</title>
+
+<!-- 모바일 웹 페이지 설정 (icon css 파일이 없음) -->
+
+<!-- Bootstrap -->
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+
+<!-- 나눔고딕 웹 폰트 적용 -->
+<link href="assets/css/nanumfont.css" rel="stylesheet">
+
+<!-- 반응형 웹을 지원하지 않을 경우 -->
+<!--<link href="assets/css/non-responsive.css" rel="stylesheet">-->
+
+<link href="assets/css/user.css" rel="stylesheet">
+<link href="assets/css/user_sub.css" rel="stylesheet">
+
+<!-- IE8 이하 버전 지원 -->
+<!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+
+<!-- IE10 반응형 웹 버그 보완 -->
+<!--[if lt IE 9]>
+      <link href="assets/css/ie10.css" rel="stylesheet">
+      <script src="assets/js/ie10.js"></script>
+    <![endif]-->
+
+<script src="assets/js/jquery-1.11.0.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<!-- 내용영역 시작 -->
+	<div class="container">
+
+		<!-- 로고와 버튼 시작 -->
+		<div class="row">
+			<div class="col-md-5">&nbsp;</div>
+			<div class="col-md-3">
+				<a href="main.html"><img src="assets/img/logo2.png" /></a>
+			</div>
+			<div class="col-md-1">&nbsp;</div>
+			<div class="col-md-3">
+				<div class="btn-group member-menu">
+					<button type="button" class="btn btn-default">
+						<a href="login.html">로그인</a>
+					</button>
+					<button type="button" class="btn btn-default">
+						<a href="join.html">회원가입</a>
+					</button>
+					<button type="button" class="btn btn-default">
+						<a href="mypage.html">마이페이지</a>
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- 로고와 버튼 끝 -->
+
+		<!-- 여백 -->
+		<div class="space"></div>
+
+		<!-- 메뉴바 시작 -->
+		<div class="navbar navbar-default" role="navigation">
+
+
+			<!-- 로고 영역 시작 -->
+			<div class="navbar-header">
+				<!-- 반응형 메뉴 버튼 시작 -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">메뉴열기</span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<!-- 반응형 메뉴 버튼 끝 -->
+			</div>
+			<!-- 로고 영역 끝 -->
+
+
+			<!-- 메뉴 영역 시작 -->
+			<div class="navbar-collapse collapse">
+
+				<!-- 메뉴 항목 시작 -->
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="intro.html"
+						class="dropdown-toggle" data-toggle="dropdown">ABOUT US <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu nav-dropdown">
+							<li><a href="intro.html">소개</a></li>
+							<li><a href="directions.html">오시는 길</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="guide.html"
+						class="dropdown-toggle" data-toggle="dropdown">INFORMATION <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu nav-dropdown">
+							<li><a href="guide.html">이용안내</a></li>
+							<li><a href="view.html">전경</a></li>
+							<li><a href="clothes.html">의상안내</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="dog.html"
+						class="dropdown-toggle" data-toggle="dropdown">GALLERY <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu nav-dropdown">
+							<li><a href="dog.html">DOG</a></li>
+							<li><a href="cat.html">CAT</a></li>
+							<li><a href="celeb.html">CELEB</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="booking.html"
+						class="dropdown-toggle" data-toggle="dropdown">SECHEDULE <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu nav-dropdown">
+							<li><a href="booking.html">예약하기</a></li>
+							<li><a href="calendar.html">예약현황</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="notice.html"
+						class="dropdown-toggle" data-toggle="dropdown">BOARD <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu nav-dropdown">
+							<li><a href="notice.html">공지사항</a></li>
+							<li><a href="qna.html">질의응답</a></li>
+						</ul></li>
+
+				</ul>
+				<!-- 메뉴 항목 끝 -->
+
+			</div>
+			<!-- 메뉴 영역 끝 -->
+		</div>
+		<!-- 메뉴바 끝 -->
+
+		<!-- 경로 및 해당 페이지 타이틀 시작 -->
+		<div class="location">
+			<ol class="breadcrumb pull-right">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">BOARD</a></li>
+				<li class="active">공지사항</li>
+			</ol>
+		</div>
+
+		<hr />
+
+		<h3 class="title">공지사항</h3>
+		<br />
+		<!-- 경로 및 해당 페이지 타이틀 끝 -->
+
+		<!-- 내용 시작 -->
+		<div class="content">
+
+			<table class="view">
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>제목</th>
+						<td colspan="4"><b>펫스튜디오 홈페이지에 방문해주셔서 감사합니다.</b></td>
+					</tr>
+					<tr>
+						<th>글쓴이</th>
+						<td>펫스튜디오</td>
+						<th>작성일자</th>
+						<td>2014.11.10</td>
+					</tr>
+					<tr>
+						<th>첨부파일</th>
+						<td>첨부파일.xls</td>
+						<th>조회</th>
+						<td>1007</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<p>
+								저희 펫 스튜디오 홈페이지에 방문해주셔서 감사합니다.<br /> <br /> * 고객님들을 만족 시킬 수 있는
+								스튜디오가 되도록 노력하겠습니다. <br />
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- 여백 -->
+			<div class="space"></div>
+
+			<div class="row">
+				<div class="col-md-12 text-right">
+					<a href="notice.html">
+						<button type="button" class="btn btn-default">목록</button>
+					</a>
+				</div>
+			</div>
+
+			<!-- 여백 -->
+			<div class="space"></div>
+
+			<table class="view">
+				<colgroup>
+					<col width="15%">
+					<col width="85%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th><a href="notice_view1.html">이전 글</a></th>
+						<td>촬영 안내</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- 내용 끝 -->
+
+		<!-- 푸터 시작 -->
+		<footer>
+			<hr />
+			<address class="text-center">업체명 : 펫스튜디오 | 대표자 : 이진솔 | 주소 :
+				서울시 강남구 테헤란로 119</address>
+		</footer>
+		<!-- 푸터 끝 -->
+
+	</div>
+	<!-- 내용영역 끝 -->
+</body>
+</html>

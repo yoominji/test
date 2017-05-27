@@ -1,0 +1,24 @@
+.personalinfo dt {font-weight:bold;}
+.personalinfo dd {text-indent:15px;}
+
+
+.calendar {width:100%;}
+.calendar th, td {width:14%;}
+.calendar th {height:50px; text-align:center;}
+.calendar th:nth-child(odd) {background-color:#9f9e9e; color:#fff;}
+.calendar th:nth-child(even) {background-color:#b1b1b1; color:#fff;}
+.calendar th:first-child {background-color:#ca664e; color:#fff;}
+.calendar th:last-child {background-color:#5b96b7; color:#fff;}
+.calendar td {height:100px; border: 1px solid #ccc; padding: 5px; text-align:left; vertical-align:top;}
+.calendar td:first-child {color:#CB5032;}
+.calendar td:last-child {color:#3689B7;}
+
+.booking_check {width:100%;}
+.booking_check tr:first-child {border-top:2px solid #557d9f;}
+.booking_check th {width:20%; height:50px; border-bottom:1px solid #ccc; padding-right:20px; text-align:right;}
+.booking_check td {width:80%; border-bottom:1px solid #ccc; padding-left:20px; text-align:left;}
+
+.view {width:100%; margin:10px 0;}
+.view tr:first-child {border-top:2px solid #557d9f;}
+.view th {height:40px; border-bottom:1px solid #ccc; background-color: #efefef; padding: 10px; text-align: center;}
+.view td {height:40px; border-bottom:1px solid #ccc; padding: 10px;}

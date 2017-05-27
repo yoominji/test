@@ -1,0 +1,25 @@
+.search {
+	float:right;
+}
+.input-group {
+	width: 300px;
+	margin-left: 95px !important;
+	bottom:34px;
+}
+.searchbtn {
+	height: 34px;
+}
+
+.check {
+
+}
+
+.page-num{
+	display: block;
+	text-align: center;
+}
+
+.page-num > li > a {
+	float: none;
+}
+
