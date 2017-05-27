@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Pet Studio 관리자</title>
+
+    <!-- 모바일 웹 페이지 설정 (icon css 파일이 없음) -->
+
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- 나눔고딕 웹 폰트 적용 -->
+    <link href="assets/css/nanumfont.css" rel="stylesheet"> 
+
+    <!-- 반응형 웹을 지원하지 않을 경우 -->
+    <!--<link href="assets/css/non-responsive.css" rel="stylesheet">-->
+
+    <link href="assets/css/inside.css" rel="stylesheet">
+    <link href="assets/css/user_sub.css" rel="stylesheet">
+
+    <!-- IE8 이하 버전 지원 -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    
+    <!-- IE10 반응형 웹 버그 보완 -->
+    <!--[if lt IE 9]>
+      <link href="assets/css/ie10.css" rel="stylesheet">
+      <script src="assets/js/ie10.js"></script>
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- sweetalert plugin (alert) -->
+    <link rel="stylesheet" href="assets/plugins/sweetalert/sweetalert.css" />
+    <script src="assets/plugins/sweetalert/sweetalert.min.js"></script>
+        
+    <script type="text/javascript">
+      $(function() {
+          $("#editBtn").click(function() {
+            location.href = "admin_booking_view.html";
+          });
+
+          $("#delBtn").click(function() {
+            swal({
+              title:"삭제확인",
+              text:"정말 삭제하시겠습니까?",
+              type:"warning",
+              closeOnConfirm:false,
+              showCancelButton:true,
+              showLoaderOnConfirm:true
+            }, function (isConfirm) {
+              if(isConfirm) {
+                setTimeout(function(){
+                  swal("삭제되었습니다.");
+                  setTimeout(function(){location.href = "admin_booking_calendar.html";},1000);
+                },2000);
+              }
+            });
+          });
+
+          $("#listBtn").click(function() {
+            location.href = "admin_booking_calendar.html";
+          });
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- 내용영역 시작 -->
+    <div class="container">
+
+      <!-- 메뉴바 시작 -->
+      <div class="navbar navbar-inverse" role="navigation">
+
+        <!-- 로고 영역 시작 -->
+        <div class="navbar-header">
+          <!-- 반응형 메뉴 버튼 시작 -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">메뉴열기</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- 반응형 메뉴 버튼 끝 -->
+        </div>
+        <!-- 로고 영역 끝 -->
+
+
+        <!-- 메뉴 영역 시작 -->
+        <div class="navbar-collapse collapse">
+
+          <!-- 메뉴 항목 시작 -->
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="admin_member_list.html" class="dropdown-toggle" data-toggle="dropdown">회원관리 <b class="caret"></b></a>
+              <ul class="dropdown-menu nav-dropdown">
+                <li><a href="admin_member_list.html">회원정보</a></li>
+                <li><a href="admin_member_out.html">회원탈퇴</a></li>
+              </ul>
+            </li>
+            <li><a href="admin_gallery_god.html">갤러리</a></li>
+            <li><a href="admin_booking_calendar.html">예약관리</a></li>
+            <li><a href="admin_notice_list.html">공지사항</a></li>
+            <li><a href="admin_qna_list.html">질의응답</a></li>
+            <li><a href="admin_qna_list.html">로그아웃</a></li>
+            
+          </ul>
+          <!-- 메뉴 항목 끝 -->
+
+        </div>
+        <!-- 메뉴 영역 끝 -->
+      </div>
+      <!-- 메뉴바 끝 -->
+
+      <!-- 경로 및 해당 페이지 타이틀 시작 -->
+      <div class="location">
+        <ol class="breadcrumb pull-right">
+          <li><a href="#">Home</a></li>
+          <li class="active">예약관리</li>
+        </ol>
+      </div>
+
+      <hr />
+
+      <h3 class="title">예약관리</h3>
+      <!-- 경로 및 해당 페이지 타이틀 끝 -->
+
+      <!-- 내용 시작 -->
+      <div class="content text-center">
+        <form name="bookingFrm" id="bookingFrm" method="post" class="form-horizontal" role="form">
+          <fieldset>
+            <legend class="sr-only">예약하기</legend>
+
+            <table class="booking_check">
+                <tbody>
+                  <tr>
+                    <th>성명</th>
+                    <td>서태웅</td>
+                  </tr>
+                  <tr>
+                    <th>휴대폰</th>
+                    <td>010-1111-2222</td>
+                  </tr>
+                  <tr>
+                    <th>예약 입금자명</th>
+                    <td>서태웅</td>
+                  </tr>
+                  <tr>
+                    <th>예약 입금일</th>
+                    <td>2017-04-20</td>
+                  </tr>
+                  <tr>
+                    <th>Pet 이름</th>
+                    <td>초코</td>
+                  </tr>
+                  <tr>
+                    <th>Pet 성별</th>
+                    <td>암컷</td>
+                  </tr>
+                  <tr>
+                    <th>Pet 나이(개월)</th>
+                    <td>10개월</td>
+                  </tr>
+                  <tr>
+                    <th>입장 인원</th>
+                    <td>어른 : 2명&nbsp;&nbsp;&nbsp;&nbsp;아이 : 0명&nbsp;&nbsp;&nbsp;&nbsp;Pet : 2마리</td>
+                  </tr>
+                  <tr>
+                    <th>촬영 희망일</th>
+                    <td>2017-05-01&nbsp;&nbsp;10:00~11:50</td>
+                  </tr>
+                  <tr>
+                    <th>카메라 대여 여부</th>
+                    <td>아니오</td>
+                  </tr>
+                  <tr>
+                    <th>전문가 촬영 여부</th>
+                    <td>예</td>
+                  </tr>
+                  <tr>
+                    <th>문의 내용</th>
+                    <td>저희 집 애기가 한 마리 더 있어서 대표 이름 하나만 쓰고 수컷 한 마리 더 데려갈 예정입니다.</td>
+                  </tr>
+                  <tr>
+                    <th><label for="booking_status">예약 현황</label></th>
+                    <td>
+                      <label class="radio-inline"><input type="radio" name="booking_status" id="booking_status1" value="A" checked />예약신청</label>
+                      <label class="radio-inline"><input type="radio" name="booking_status" id="booking_status2" value="F" />예약완료</label>
+                      
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <button type="button" id="editBtn" class="btn btn-primary">예약현황 변경</button>
+                  <button type="button" id="delBtn" class="btn btn-danger">삭제</button>
+                  <button type="button" id="listBtn" class="btn btn-default">목록</button>
+                </div>
+              </div>
+            
+          </fieldset>
+        </form>
+      </div>
+      <!-- 내용 끝 -->
+      </div>
+      <!-- 내용 끝 -->
+    </div>
+    <!-- 내용영역 끝 -->
+  </body>
+</html>
