@@ -29,3 +29,7 @@
 .commentWrite textarea {margin-bottom:5px;}
 
 .media-list li {border-bottom:1px solid #ccc; padding:5px;}
+
+.intro img { min-width: 100%; }
+
+.backgroudset img { min-width: 80%; }
