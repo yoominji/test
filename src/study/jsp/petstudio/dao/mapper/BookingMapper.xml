@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 이 파일의 경로를 config.xml에 명시해야 한다. -->
+
+<!-- 첨부파일 대한 CRUD 기능을 구현하기 위한 Mapper -->
+<mapper namespace="BookingMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="booking" type="study.jsp.petstudio.model.Booking">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id"/>
+		<result property="userName" column="user_name"/>
+		<result property="tel" column="tel"/>
+		<result property="depositName" column="deposit_name"/>
+		<result property="depositDate" column="deposit_date"/>
+		<result property="petName" column="pet_name"/>
+		<result property="petGender" column="pet_gender"/>
+		<result property="petAge" column="pet_age"/>
+		<result property="admissionAdult" column="admission_adult"/>
+		<result property="admissionChild" column="admission_child"/>
+		<result property="admissionPet" column="admission_pet"/>
+		<result property="filmingDate" column="filming_date"/>
+		<result property="filmingTime" column="filming_time"/>
+		<result property="cameraRental" column="camera_rental"/>
+		<result property="professionalFilming" column="professional_filming"/>
+		<result property="questionContent" column="question_content"/>
+		<result property="bookingStatus" column="booking_status"/>
+		<result property="regDate" column="reg_date"/>
+		<result property="editDate" column="edit_date"/>
+		<result property="memberId" column="member_id"/>
+	</resultMap>
+	
+	<!-- 예약 신청 -->
+	<insert id="insertBooking" parameterType="study.jsp.petstudio.model.Booking" useGeneratedKeys="true" keyProperty="id">
+		Insert Into booking (user_name, tel, deposit_name, deposit_date, pet_name, pet_gender, pet_age, 
+			admission_adult, admission_child, admission_pet, filming_date, filming_time, camera_rental, 
+			professional_filming, question_content, booking_status, reg_date, edit_date, member_id) 
+		Values (#{userName}, #{tel}, #{depositName}, #{depositDate}, #{petName}, #{petGender}, #{petAge}, 
+			#{admissionAdult}, #{admissionChild}, #{admissionPet}, #{filmingDate}, #{filmingTime}, #{cameraRental}, 
+			 #{professionalFilming}, #{questionContent}, 'A', now(), now(), #{memberId})
+	</insert>
+	
+	<!-- 예약 수정 -->
+	<update id="updateBooking" parameterType="study.jsp.petstudio.model.Booking">
+		Update booking Set
+			user_name=#{user_name}, tel=#{tel}, deposit_name=#{deposit_name}, deposit_date=#{deposit_date}, 
+			pet_name=#{pet_name}, pet_gender=#{pet_gender}, pet_age=#{pet_age}, admission_adult=#{admission_adult}, 
+			admission_child=#{admission_child}, admission_pet=#{admission_pet}, filming_date=#{filming_date}, 
+			filming_time=#{filming_time}, camera_rental=#{camera_rental}, professional_filming=#{professional_filming},
+			question_content=#{question_content}, edit_date = now()
+		Where id = #{id}
+	</update>
+	
+	<!-- 예약 현황 수정 -->
+	<update id="updateBookingStatus" parameterType="study.jsp.petstudio.model.Booking">
+		Update booking Set booking_status = #{bookingStatus}, edit_date = now() Where id = #{id}
+	</update>
+	
+	<!-- 회원탈퇴를 위한 예약 참조 해제 -->
+	<update id="updateBookingMemberOut" parameterType="study.jsp.petstudio.model.Booking">
+		Update booking Set member_id=null, edit_date = now() Where member_id = #{memberId}
+	</update>
+	
+	<!-- 예약 삭제 -->
+	<delete id="deleteBooking" parameterType="study.jsp.petstudio.model.Booking">
+		Delete From booking Where id = #{id}
+	</delete>
+	
+	<!-- 예약 일자별 조회 -->
+	<select id="selectBookingDate" parameterType="study.jsp.petstudio.model.Booking" resultMap="booking">
+		Select id, user_name, filming_date, filming_time, booking_status From booking  
+		Where filming_date = #{filmingDate} 
+		Order By filming_date Asc 
+	</select>
+	
+	<!-- 예약별 조회 -->
+	<select id="selectBooking" parameterType="study.jsp.petstudio.model.Booking" resultMap="booking">
+		Select id, user_name, tel, deposit_name, Date_Format(deposit_date, '%Y-%m-%d') As deposit_date, pet_name, pet_gender, pet_age, 
+			admission_adult, admission_child, admission_pet, Date_Format(filming_date, '%Y-%m-%d') As filming_date, filming_time, 
+			camera_rental, professional_filming, question_content, booking_status, Date_Format(reg_date, '%Y-%m-%d') As reg_date, 
+			Date_Format(edit_date, '%Y-%m-%d') As edit_date, member_id From booking  
+		Where id = #{id} 
+	</select>
+</mapper>

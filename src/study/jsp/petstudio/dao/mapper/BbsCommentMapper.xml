@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 이 파일의 경로를 config.xml에 명시해야 한다. -->
+
+<!-- 첨부파일 대한 CRUD 기능을 구현하기 위한 Mapper -->
+<mapper namespace="BbsCommentMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="bbs_comment" type="study.jsp.petstudio.model.BbsComment">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id"/>
+		<result property="writer" column="writer"/>
+		<result property="comment" column="comment"/>
+		<result property="regDate" column="reg_date"/>
+		<result property="editDate" column="edit_date"/>
+		<result property="memberId" column="member_id"/>
+		<result property="bbsDocumentId" column="bbs_document_id"/>
+	</resultMap>
+	
+	<!-- 덧글 정보 저장하기 -->
+	<insert id="insertComment" parameterType="study.jsp.petstudio.model.BbsComment" useGeneratedKeys="true" keyProperty="id">
+		Insert Into bbs_comment (writer, comment, reg_date, edit_date, member_id, bbs_document_id) 
+		Values (#{writer}, #{comment}, now(), now(), #{memberId}, #{bbsDocumentId})
+	</insert>
+	
+	<!-- 덧글 정보 수정하기 -->
+	<update id="updateComment" parameterType="study.jsp.petstudio.model.BbsComment">
+		Update bbs_comment Set writer = #{writer}, comment = #{comment}, edit_date = now() Where id=#{id};
+	</update>
+	
+	<!-- 특정 회원과의 게시물 참조 해제하기 -->
+	<update id="updateCommentMemberOut" parameterType="study.jsp.petstudio.model.BbsComment">
+		Update bbs_comment Set member_id = NULL, edit_date = now() Where member_id=#{memberId};
+	</update>
+	
+	<!-- 덧글 삭제 하기 -->
+	<delete id="deleteComment" parameterType="study.jsp.petstudio.model.BbsComment">
+		Delete From bbs_comment Where id=#{id};
+	</delete>
+	
+	<!-- 특정 게시물에 속한 모든 덧글을 삭제한다. -->
+	<delete id="deleteCommentAll" parameterType="study.jsp.petstudio.model.BbsComment">
+		Delete From bbs_comment Where bbs_document_id=#{bbsDocumentId};
+	</delete>
+	
+	<!-- 하나의 게시물에 속한 모든 덧글 목록을 조회한다. -->
+	<select id="selectCommentList" parameterType="study.jsp.petstudio.model.BbsComment" resultMap="bbs_comment">
+		Select id, writer, comment, Date_Format(reg_date, '%Y-%m-%d %H:%i%s') As reg_date, 
+			Date_Format(edit_date, '%Y-%m-%d %H:%i%s') As edit_date, member_id, bbs_document_id 
+		From bbs_comment 
+		Where bbs_document_id = #{bbsDocumentId}
+		Order By id Asc
+	</select>
+	
+	<!-- 덧글 하나에 대한 정보를 조회한다. -->
+	<select id="selectComment" parameterType="study.jsp.petstudio.model.BbsComment" resultMap="bbs_comment">
+		Select id, writer, comment, Date_Format(reg_date, '%Y-%m-%d %H:%i%s') As reg_date, 
+			Date_Format(edit_date, '%Y-%m-%d %H:%i%s') As edit_date, member_id, bbs_document_id 
+		From bbs_comment 
+		Where id=#{id};
+	</select>
+	
+	<!-- 자신의 덧글인지 검사한다. -->
+	<select id="selectCommentCountByMemberId" parameterType="study.jsp.petstudio.model.BbsComment" resultType="int">
+		Select Count(id) From bbs_comment Where id = #{id} And member_id=#{memberId}
+	</select>	
+</mapper>

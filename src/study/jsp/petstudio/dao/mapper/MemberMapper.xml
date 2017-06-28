@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 이 파일의 경로를 config.xml에 명시해야 한다. -->
+
+<!-- 회원에 대한 CRUD 기능을 구현하기 위한 Mapper -->
+<mapper namespace="MemberMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="member" type="study.jsp.petstudio.model.Member">
+	
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id"/>
+		<result property="memberType" column="member_type"/>
+		<result property="userId" column="user_id"/>
+		<result property="userPw" column="user_pw"/>
+		<result property="name" column="name"/>
+		<result property="tel" column="tel"/>
+		<result property="regDate" column="reg_date"/>
+		<result property="editDate" column="edit_date"/>
+		<result property="memberOut" column="member_out"/>
+	</resultMap>
+	
+	<!-- 아이디 중복 검사를 수행한다.-->
+	<select id="selectUserIdCount" parameterType="study.jsp.petstudio.model.Member"
+	resultType="int">
+		SELECT Count(id) FROM member WHERE user_id=#{userId}
+	</select>
+	
+	<!-- 회원정보를 저장한다 : 가입 -->
+	<insert id="insertMember" parameterType="study.jsp.petstudio.model.Member"
+	useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO member (member_type, user_id, user_pw, name, tel, reg_date, edit_date, member_out)
+		VALUES ('M', #{userId}, password(#{userPw}), #{name}, #{tel}, now(), now(), 'N')
+	</insert>
+	
+	<!-- 아이디와 비밀번호가 일치하는 회원정보를 조회한다. : 로그인  -->
+	<select id="selectLoginInfo" parameterType="study.jsp.petstudio.model.Member" resultMap="member">
+		Select * From Member 
+		Where member_type = 'M' And user_id = #{userId} And user_pw=password(#{userPw}) And member_out='N'
+		Order by id DESC 
+		Limit 0, 1
+	</select>
+	
+	<!-- 일련번호에 의한 회원정보 조회. : 마이페이지 -->
+	<select id="selectMember" parameterType="study.jsp.petstudio.model.Member" resultMap="member">
+		Select user_id, name, tel From Member
+		Where member_type = 'M' And id = #{id} 
+	</select>
+	
+	<!-- 현재 로그인 중인 회원의 비밀번호를 검사한다. -->
+	<select id="selectMemberPasswordCount" parameterType="study.jsp.petstudio.model.Member" resultType="int">
+		Select Count(id) From Member Where member_type = 'M' And id = #{id} And user_pw=password(#{userPw}) 
+	</select>
+	
+	<!-- 회원정보를 변경한다  : 전화번호 변경-->
+	<update id="updateMember" parameterType="study.jsp.petstudio.model.Member">
+		Update Member Set tel=#{tel}, edit_date = now()
+		Where id = #{id}
+	</update>
+	
+	<!-- 회원정보를 변경한다  : 비밀번호 변경-->
+	<update id="updateMemberPw" parameterType="study.jsp.petstudio.model.Member">
+		Update Member Set user_pw=password(#{userPw}), edit_date = now()
+		Where id = #{id}
+	</update>
+	
+	<!-- 회원정보를 변경한다 : 탈퇴 신청 -->
+	<update id="updateMemberOut" parameterType="study.jsp.petstudio.model.Member">
+		Update Member Set member_out = 'Y', edit_date = now()
+			Where member_type = 'M' And id = #{id}
+	</update>
+	
+	<!--  비밀번호 재발급 : 이메일주소가 일치하는 비밀번호를 변경한다.-->
+	<update id="updateMemberPasswordByEmail" parameterType="study.jsp.petstudio.model.Member">
+		Update Member Set user_pw = password(#{userPw}), edit_date=now()
+			Where member_type = 'M' And user_id = #{userId}
+	</update>
+	
+	<!-- 아이디 찾기 -->
+	<select id="selectFindId" parameterType="study.jsp.petstudio.model.Member" resultMap="member">
+		SELECT name, user_id, tel 
+		FROM Member 
+		Where member_type ='M' And name=#{name} And tel=#{tel} And member_out='N'
+		Order by id DESC 
+		Limit 0, 1
+	</select>
+	
+	<!-- 관리자 로그인  -->
+	<select id="selectAdminLogin" parameterType="study.jsp.petstudio.model.Member" resultMap="member">
+		Select * From Member 
+		Where member_type = 'A' And user_id = #{userId} And user_pw=password(#{userPw})
+		Order by id DESC 
+		Limit 0, 1
+	</select>
+	
+</mapper>

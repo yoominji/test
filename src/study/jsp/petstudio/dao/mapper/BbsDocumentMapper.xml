@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 이 파일의 경로를 config.xml에 명시해야 한다. -->
+
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="BbsDocumentMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="bbs_document" type="study.jsp.petstudio.model.BbsDocument">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id"/>
+		<result property="bbsType" column="bbs_type"/>
+		<result property="subject" column="subject"/>
+		<result property="category" column="category"/>
+		<result property="writer" column="writer"/>
+		<result property="content" column="content"/>
+		<result property="hit" column="hit"/>
+		<result property="regDate" column="reg_date"/>
+		<result property="editDate" column="edit_date"/>
+		<result property="memberId" column="member_id"/>
+	</resultMap>
+	
+	<!-- 게시판 저장 -->
+	<insert id="insertDocument" 
+		parameterType="study.jsp.petstudio.model.BbsDocument"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO bbs_document (
+			bbs_type, subject, category, writer, content,
+			hit, reg_date, edit_date, member_id
+		) VALUES (
+			#{bbsType}, #{subject}, #{category}, #{writer},
+			#{content}, 0, now(), now(), #{memberId}
+		)
+	</insert>
+	
+	<!-- 게시판 수정 -->
+	<update id="updateDocument" parameterType="study.jsp.petstudio.model.BbsDocument">
+		UPDATE bbs_document SET
+			bbs_type=#{bbsType}, subject=#{subject},
+			category=#{category}, writer=#{writer},
+			content=#{content}, edit_date=now()
+		WHERE id=#{id}
+	</update>
+	
+	<!-- 게시판 단일조회 -->
+	<select id="selectDocument" 
+		parameterType="study.jsp.petstudio.model.BbsDocument"
+		resultMap="bbs_document">
+		SELECT id, bbs_type, subject, category, writer, content, hit,
+			   DATE_FORMAT(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date, 
+			   DATE_FORMAT(edit_date, '%Y-%m-%d %H:%i:%s') as edit_date,
+			   member_id
+		FROM   bbs_document
+		WHERE  bbs_type=#{bbsType} AND id=#{id} 
+	</select>
+	
+	<!-- 게시판 목록 조회 -->
+	<select id="selectDocumentList" 
+		parameterType="study.jsp.petstudio.model.BbsDocument"
+		resultMap="bbs_document">
+		SELECT id, bbs_type, subject, category, writer, content, hit,
+			   DATE_FORMAT(reg_date, '%Y-%m-%d %H:%i:%s') as reg_date, 
+			   DATE_FORMAT(edit_date, '%Y-%m-%d %H:%i:%s') as edit_date,
+			   member_id
+		FROM   bbs_document
+		ORDER  BY id DESC 
+	</select>
+	
+	<!-- 게시판 삭제 -->
+	<delete id="deleteDocument" parameterType="study.jsp.petstudio.model.BbsDocument">
+		DELETE FROM bbs_document WHERE id=#{id} 
+	</delete>
+</mapper>

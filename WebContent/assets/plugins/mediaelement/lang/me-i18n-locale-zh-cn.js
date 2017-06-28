@@ -40,6 +40,5 @@
             'mejs.volume-slider' : "音量选择键"
 
         };
-    }
 
 }(mejs.i18n.locale.strings));

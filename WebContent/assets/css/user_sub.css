@@ -4,7 +4,7 @@
 .personalinfo dt {font-weight:bold;}
 .personalinfo dd {text-indent:15px;}
 
-.calendar {width:100%;}
+.calendar {width:100%; margin-bottom:20px;}
 .calendar th, td {width:14%;}
 .calendar th {height:50px; text-align:center;}
 .calendar th:nth-child(odd) {background-color:#9f9e9e; color:#fff;}
@@ -14,10 +14,11 @@
 .calendar td {height:100px; border: 1px solid #ccc; padding: 5px; text-align:left; vertical-align:top;}
 .calendar td:first-child {color:#CB5032;}
 .calendar td:last-child {color:#3689B7;}
+.calendar td p{font-size:11px;}
 
-.booking_check {width:100%;}
+.booking_check {width:100%; margin-bottom:20px;}
 .booking_check tr:first-child {border-top:2px solid #557d9f;}
-.booking_check th {width:20%; height:50px; border-bottom:1px solid #ccc; padding-right:20px; text-align:right;}
+.booking_check th {width:20%; height:40px; border-bottom:1px solid #ccc; background-color: #efefef; text-align: center;}
 .booking_check td {width:80%; border-bottom:1px solid #ccc; padding-left:20px; text-align:left;}
 
 .view {width:100%; margin:10px 0;}
@@ -33,3 +34,18 @@
 .intro img { min-width: 100%; }
 
 .backgroudset img { min-width: 80%; }
+
+.box  {
+        width: 65%;
+        margin: 10px auto;
+        border : 2px solid #ccc;
+        padding: 30px;
+        text-align: center;
+      }
+      
+.personalinfo {
+	height : 200px;
+	overflow:hidden;
+	overflow-y:scroll;
+	
+}

@@ -1,16 +1,14 @@
 @import url('button.css');
 @import url('pagination.css');
 
-body {padding: 10px 0;}
 .space {height:10px;}
 
 .navbar-nav {width:100%;}
-.navbar-nav > li {width:20%; text-align:center;}
+.navbar-nav > li {width:16.66%; text-align:center;}
 .nav-dropdown {width:100%;}
 .nav-dropdown > li > a {width:100%; text-align:center;}
-.member-menu {padding-left:25px;}
 
 .location {width:100%; height:40px;}
 .title {font-weight: bold;}
 
-.content { min-height: 600px; }
+.content {min-height: 600px; padding-top: 15px;}
